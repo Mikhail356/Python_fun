@@ -1,11 +1,12 @@
 from math import sin, cos
-from numpy import arange
-from time import sleep
+from numpy import arange, asarray, ubyte, single
 A, B = 0., 0.
+z = asarray([0 for _ in range(1760)], dtype=single)
+b = asarray([32 for _ in range(1760)], dtype=ubyte)
 print("\x1b[2J", end='')
 while True:
-    b = [32 for _ in range(1760)]
-    z = [0 for _ in range(1760)]
+    b.fill(32)
+    z.fill(0)
     for j in arange(0., 6.28, 0.07):
         for i in arange(0., 6.28, 0.02):
             c, d, e, f, g = sin(i), cos(j), sin(A), sin(j), cos(A)
@@ -20,7 +21,7 @@ while True:
                     c * d * e - f * g - l * d * n))
             if 0 < y < 22 and 0 < x < 80 and z[o] < D:
                 z[o] = D
-                b[o] = '.,-~:;=!*#$@'[N if N > 0 else 0]
+                b[o] = ord('.,-~:;=!*#$@'[N if N > 0 else 0])
     print("\x1b[H", end='')
     for k in range(1761):
         print('%c' % (b[k] if k % 80 else 10), end='')
