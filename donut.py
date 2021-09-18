@@ -3,12 +3,14 @@ from numpy import arange, asarray, ubyte, single
 A, B = 0., 0.
 z = asarray([0 for _ in range(1760)], dtype=single)
 b = asarray([32 for _ in range(1760)], dtype=ubyte)
+ar1 = arange(0., 6.28, 0.07)
+ar2 = arange(0., 6.28, 0.02)
 print("\x1b[2J", end='')
 while True:
     b.fill(32)
     z.fill(0)
-    for j in arange(0., 6.28, 0.07):
-        for i in arange(0., 6.28, 0.02):
+    for j in ar1:
+        for i in ar2:
             c, d, e, f, g = sin(i), cos(j), sin(A), sin(j), cos(A)
             l, m, n = cos(i), cos(B), sin(B)
             h = d + 2.
